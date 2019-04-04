@@ -14,7 +14,7 @@ export class ExpenseListFilters extends React.Component {
   onFocusChange = (calendarFocused) => {
     this.setState(() => ({ calendarFocused }));
   }
-  onTextChange = (e) => {
+  onTextChange = (e) => {   //when filter text chnaged, we wanna reset text filter, so we pass this down to maptostate, and dispatch there
     this.props.setTextFilter(e.target.value);
   };
   onSortChange = (e) => {
@@ -36,7 +36,7 @@ export class ExpenseListFilters extends React.Component {
           value={this.props.filters.sortBy}
           onChange={this.onSortChange}
         >
-          <option value="date">Date</option>
+          <option value="date">Date</option> 
           <option value="amount">Amount</option>
         </select>
         <DateRangePicker
@@ -55,11 +55,11 @@ export class ExpenseListFilters extends React.Component {
 };
 
 const mapStateToProps = (state) => ({
-  filters: state.filters
+  filters: state.filters        // grab state.filters, we don't need expenses here
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setTextFilter: (text) => dispatch(setTextFilter(text)),
+  setTextFilter: (text) => dispatch(setTextFilter(text)), // (text) is the (e.target.value) gets passed in from this.props.setTextFilter(e.target.value); we dispatch it to setTextFilter aciton here
   sortByDate: () => dispatch(sortByDate()),
   sortByAmount: () => dispatch(sortByAmount()),
   setStartDate: (startDate) => dispatch(setStartDate(startDate)),
@@ -67,3 +67,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExpenseListFilters);
+
+
+//export default connect()(ExpenseListFilters);
+  // if we don't need anything from the state, and "just want the dispatch", we can declare connect like this

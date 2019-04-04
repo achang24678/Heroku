@@ -1,5 +1,5 @@
 import uuid from 'uuid';
-import { database } from '../firebase/firebase';
+import database from '../firebase/firebase';
 // component calls action generator
 // action generator returns object
 // component dispatches object
@@ -18,7 +18,7 @@ export const addExpense = (expense) => ({
   expense
 });
 
-export const startAddExpense = (expenseData = {}) => {
+export const startAddExpense = (expenseData = {}) => {  //add data into firebase
   return (dispatch) => {
     const {
       description = '',
@@ -57,19 +57,19 @@ export const setExpenses = (expenses) => ({
 });
 
 
-export const startSetExpenses = () => {
+export const startSetExpenses = () => { //fecth data from firebase then dispatch the setExpenses action
   return (dispatch) => {
-    return database.ref('expenses').once('value').then((snapshot) => {
-      const expenses = [];
+    return database.ref('expenses').once('value').then((snapshot) => {  //****return here makes sure to return promises back to app.js in order to run ReactDOM.render(jsx...........)
+      const expenses = [];  //create new array
 
-      snapshot.forEach((childSnapshot) => {
-        expenses.push({
+      snapshot.forEach((childSnapshot) => {   // iterate through datas
+        expenses.push({           //parse data into this new array
           id: childSnapshot.key,
           ...childSnapshot.val()
         });
       });
 
-      dispatch(setExpenses(expenses));
+      dispatch(setExpenses(expenses));  //dispatch set_expenses, so the data actually changes
     });
   };
 };

@@ -1,10 +1,10 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { startAddExpense, addExpense, editExpense, removeExpense } from '../../actions/expenses';
+import { startAddExpense, addExpense, editExpense, removeExpense, setExpenses, startSetExpenses } from '../../actions/expenses';
 import expenses from '../fixtures/expenses';
 import database from '../../firebase/firebase';
 
-const createMockStore = configureMockStore([thunk]);
+const createMockStore = configureMockStore([thunk]); //middleware, mockstore for testing
 
 // var originalTimeout;
 
@@ -18,12 +18,12 @@ const createMockStore = configureMockStore([thunk]);
 // });
 
 
-beforeEach((done) => {
+beforeEach((done) => {  //setup dummy firebase data
   const expensesData = {};
-  expenses.forEach(({ id, description, note, amount, createdAt }) => {
-    expensesData[id] = { description, note, amount, createdAt };
+  expenses.forEach(({ id, description, note, amount, createdAt }) => {  //fetch each expenses in fixtures file
+    expensesData[id] = { description, note, amount, createdAt };  // toss them onto expensesData object array
   });
-  database.ref('expenses').set(expensesData).then(() => done());
+  database.ref('expenses').set(expensesData).then(() => done());  //store them in firebase
 });
 
 test('should setup remove expense action object', () => {
@@ -105,24 +105,22 @@ test('should add expense with defaults to database and store', (done) => {
   });
 });
 
-test('should not edit an expense if id not found', () => {
-  const amount = 122000;
-  const action = {
-    tpye: 'EDIT_EXPENSE',
-    id: '-1',
-    updates: {
-      amount
-    }
-  };
-  const state = expensesReducer(expenses,action);
-  expect(state).toEqual(expenses);
+test('should setup set expense action object with data', () => {
+  const action = setExpenses(expenses);
+  expect(action).toEqual({
+    type: 'SET_EXPENSES',
+    expenses
+  });
 });
 
-test('should set expenses', () => {
-  const action = {
-    type: 'SET_EXPENSES',
-    expenses: [expenses[1]]
-  };
-  const state = expensesReducer(expenses, action);
-  expect(state).toEqual([expenses[1]]);
+test('should fetch the expenses from firebase', (done) => { //done letting jest know don't care about the success or failure until hits done
+  const store = createMockStore({});
+  store.dispatch(startSetExpenses()).then(() => {
+    const actions = store.getActions();
+    expect(actions[0]).toEqual({
+      type: 'SET_EXPENSES',
+      expenses  // we expect to get back dummy data we set to firebase (seed data in fixture file)
+    });
+    done();
+  });
 });

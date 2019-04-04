@@ -4,13 +4,13 @@ import ExpenseForm from './ExpenseForm';
 import { editExpense, removeExpense } from '../actions/expenses';
 
 export class EditExpensePage extends React.Component {
-  onSubmit = (expense) => {
-    this.props.editExpense(this.props.expense.id, expense);
-    this.props.history.push('/');
+  onSubmit = (expense) => {   // save the new edited information
+    this.props.editExpense(this.props.expense.id, expense); // pass down to the mapDispatchProps's editExpense: then call out dispatch to stroe the edited information
+    this.props.history.push('/'); //redirect to dashboard when submitted
   };
   onRemove = () => {
-    this.props.removeExpense({ id: this.props.expense.id });
-    this.props.history.push('/');
+    this.props.removeExpense({ id: this.props.expense.id });    // remove exisiting item
+    this.props.history.push('/'); //then redirect back to dasahboard
   };
   render() {
     return (
@@ -26,12 +26,12 @@ export class EditExpensePage extends React.Component {
 };
 
 const mapStateToProps = (state, props) => ({
-  expense: state.expenses.find((expense) => expense.id === props.match.params.id)
+  expense: state.expenses.find((expense) => expense.id === props.match.params.id)   //find the match by id
 });
 
 const mapDispatchToProps = (dispatch, props) => ({
-  editExpense: (id, expense) => dispatch(editExpense(id, expense)),
-  removeExpense: (data) => dispatch(removeExpense(data))
+  editExpense: (id, expense) => dispatch(editExpense(id, expense)),   //doing dispatch here on its own, passing in id, and expense object array, for dispatching process
+  removeExpense: (data) => dispatch(removeExpense(data))            //doing dispatch here on its own
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditExpensePage);

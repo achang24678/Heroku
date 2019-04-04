@@ -13,13 +13,13 @@ import './firebase/firebase';
 
 const store = configureStore();
 
-const jsx = (
-  <Provider store={store}>
+const jsx = ( // all components do have accesss to the store, with Provider setup, we can now use connect
+  <Provider store={store}>  
     <AppRouter />
   </Provider>
 );
 
-ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
+ReactDOM.render(<p>Loading...</p>, document.getElementById('app')); //shows loading before we can fecth the data from firebase
 
 store.dispatch(startSetExpenses()).then(() => {
   ReactDOM.render(jsx, document.getElementById('app'));

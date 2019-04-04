@@ -23,7 +23,7 @@ export default (state = expensesReducerDefaultState, action) => {
         };
       });
     case 'SET_EXPENSES':
-      return action.expenses;
+      return action.expenses; //set expenses array, do not care about the state or previous state here
     default:
       return state;
   }

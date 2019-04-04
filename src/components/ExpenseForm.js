@@ -7,30 +7,30 @@ export default class ExpenseForm extends React.Component {
     super(props);
 
     this.state = {
-      description: props.expense ? props.expense.description : '',
-      note: props.expense ? props.expense.note : '',
-      amount: props.expense ? (props.expense.amount / 100).toString() : '',
-      createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
+      description: props.expense ? props.expense.description : '', //for editexpensePage, if props in editexpensepage exists, we paste them right at the spot
+      note: props.expense ? props.expense.note : '',                //for editexpensePage, if props in editexpensepage exists, we paste them right at the spot
+      amount: props.expense ? (props.expense.amount / 100).toString() : '',   //for editexpensePage, if props in editexpensepage exists, we paste them right at the spot
+      createdAt: props.expense ? moment(props.expense.createdAt) : moment(),    //for editexpensePage, if props in editexpensepage exists, we paste them right at the spot
       calendarFocused: false,
       error: ''
     };
   }
-  onDescriptionChange = (e) => {
+  onDescriptionChange = (e) => {    //change value with user input
     const description = e.target.value;
     this.setState(() => ({ description }));
   };
-  onNoteChange = (e) => {
+  onNoteChange = (e) => {   //change value with user input
     const note = e.target.value;
     this.setState(() => ({ note }));
   };
-  onAmountChange = (e) => {
+  onAmountChange = (e) => {   //change value with user input
     const amount = e.target.value;
 
     if (!amount || amount.match(/^\d{1,}(\.\d{0,2})?$/)) {
       this.setState(() => ({ amount }));
     }
   };
-  onDateChange = (createdAt) => {
+  onDateChange = (createdAt) => {   //change value with user input
     if (createdAt) {
       this.setState(() => ({ createdAt }));
     }
@@ -38,14 +38,14 @@ export default class ExpenseForm extends React.Component {
   onFocusChange = ({ focused }) => {
     this.setState(() => ({ calendarFocused: focused }));
   };
-  onSubmit = (e) => {
+  onSubmit = (e) => {     // wait for submit on the entire form
     e.preventDefault();
 
     if (!this.state.description || !this.state.amount) {
       this.setState(() => ({ error: 'Please provide description and amount.' }));
     } else {
       this.setState(() => ({ error: '' }));
-      this.props.onSubmit({
+      this.props.onSubmit({    // pass all the user input values, sotred in state, "pass to AddExpensePage or EditExpensePage"
         description: this.state.description,
         amount: parseFloat(this.state.amount, 10) * 100,
         createdAt: this.state.createdAt.valueOf(),
@@ -53,6 +53,7 @@ export default class ExpenseForm extends React.Component {
       });
     }
   };
+
   render() {
     return (
       <div>

@@ -9,8 +9,8 @@ export const ExpenseList = (props) => (
       props.expenses.length === 0 ? (
         <p>No expenses</p>
       ) : (
-          props.expenses.map((expense) => {
-            return <ExpenseListItem key={expense.id} {...expense} />;
+          props.expenses.map((expense) => {   //2.  then show on the page one by one using map
+            return <ExpenseListItem key={expense.id} {...expense} />; //3. format each expense item here in ExpenseListItem
           })
         )
     }
@@ -18,8 +18,8 @@ export const ExpenseList = (props) => (
 );
 
 const mapStateToProps = (state) => {
-  return {
-    expenses: selectExpenses(state.expenses, state.filters)
+  return {                    //we get the current expenses and filters states sotred in redux store
+    expenses: selectExpenses(state.expenses, state.filters)   //1. filter out the expense items
   };
 };
 

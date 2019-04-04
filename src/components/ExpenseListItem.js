@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import numeral from 'numeral';
 
+// this page formats the individual expense item on the dashgboard page
+// <Link to ......    linking to EditExpensePage by providing expenses item id
+
 const ExpenseListItem = ({ id, description, amount, createdAt }) => (
   <div>
     <Link to={`/edit/${id}`}>

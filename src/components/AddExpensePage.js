@@ -4,16 +4,16 @@ import ExpenseForm from './ExpenseForm';
 import { startAddExpense } from '../actions/expenses';
 
 export class AddExpensePage extends React.Component {
-  onSubmit = (expense) => {
-    this.props.startAddExpense(expense);
-    this.props.history.push('/');
+  onSubmit = (expense) => {     // 2. once the expenseform is submitted,
+    this.props.startAddExpense(expense); // 3. add the expense,
+    this.props.history.push('/');   // 4. then redirect to dashboard page
   };
   render() {
     return (
       <div>
         <h1>Add Expense</h1>
         <ExpenseForm
-          onSubmit={this.onSubmit}
+          onSubmit={this.onSubmit} //1. wait for expenseform is submitted 
         />
       </div>
     );

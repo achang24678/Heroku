@@ -14,7 +14,7 @@ firebase.initializeApp(config);
 
 const database = firebase.database();
 
-export { firebase, database };
+export { firebase, database as default };
 
 // //child_removed - event that allow us to fetch the removed child data
 // database.ref('expenses').on('child_removed', (snapshot) => {
