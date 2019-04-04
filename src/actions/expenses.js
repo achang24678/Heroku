@@ -19,7 +19,8 @@ export const addExpense = (expense) => ({
 });
 
 export const startAddExpense = (expenseData = {}) => {  //add data into firebase
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid; //use getState to fetch uid
     const {
       description = '',
       note = '',
@@ -28,7 +29,7 @@ export const startAddExpense = (expenseData = {}) => {  //add data into firebase
     } = expenseData;
     const expense = { description, note, amount, createdAt };
 
-    return database.ref('expenses').push(expense).then((ref) => {
+    return database.ref(`users/${uid}/expenses`).push(expense).then((ref) => {
       dispatch(addExpense({
         id: ref.key,
         ...expense
@@ -44,8 +45,9 @@ export const removeExpense = ({ id } = {}) => ({
 });
 
 export const startRemoveExpense = ({ id } = {}) => {
-  return(dispatch) => {
-    return database.ref(`expenses/${id}`).remove().then(() => {   //if we want to return some promises, we put return in fron and attach then call
+  return(dispatch, getState) => {
+    const uid = getState().auth.uid;
+    return database.ref(`users/${uid}/expenses/${id}`).remove().then(() => {   //if we want to return some promises, we put return in fron and attach then call
       dispatch(removeExpense({ id }));  //finally we dispatch removeExpense to remove data locally stored in the store after removing the one lives on firebase
     });
   };
@@ -59,8 +61,9 @@ export const editExpense = (id, updates) => ({
 });
 
 export const startEditExpense = (id, updates) => {
-  return (dispatch) => {
-    return database.ref(`expenses/${id}`).update(updates).then(() => {  //return make sure after startEditExpense, we can then run the code dispatch(editExpense(id, updates)))
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    return database.ref(`users/${uid}/expenses/${id}`).update(updates).then(() => {  //return make sure after startEditExpense, we can then run the code dispatch(editExpense(id, updates)))
       dispatch(editExpense(id, updates));
     });
   };
@@ -74,8 +77,9 @@ export const setExpenses = (expenses) => ({
 
 
 export const startSetExpenses = () => { //fecth data from firebase then dispatch the setExpenses action
-  return (dispatch) => {
-    return database.ref('expenses').once('value').then((snapshot) => {  //****return here makes sure to return promises back to app.js in order to run ReactDOM.render(jsx...........)
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    return database.ref(`users/${uid}/expenses`).once('value').then((snapshot) => {  //****return here makes sure to return promises back to app.js in order to run ReactDOM.render(jsx...........)
       const expenses = [];  //create new array
 
       snapshot.forEach((childSnapshot) => {   // iterate through datas
