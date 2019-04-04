@@ -43,6 +43,14 @@ export const removeExpense = ({ id } = {}) => ({
   id
 });
 
+export const startRemoveExpense = ({ id } = {}) => {
+  return(dispatch) => {
+    return database.ref(`expenses/${id}`).remove().then(() => {   //if we want to return some promises, we put return in fron and attach then call
+      dispatch(removeExpense({ id }));  //finally we dispatch removeExpense to remove data locally stored in the store after removing the one lives on firebase
+    });
+  };
+};
+
 // EDIT_EXPENSE
 export const editExpense = (id, updates) => ({
   type: 'EDIT_EXPENSE',

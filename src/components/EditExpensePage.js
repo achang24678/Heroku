@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ExpenseForm from './ExpenseForm';
-import { editExpense, removeExpense } from '../actions/expenses';
+import { editExpense, startRemoveExpense } from '../actions/expenses';
 
 export class EditExpensePage extends React.Component {
   onSubmit = (expense) => {   // save the new edited information
@@ -9,7 +9,7 @@ export class EditExpensePage extends React.Component {
     this.props.history.push('/'); //redirect to dashboard when submitted
   };
   onRemove = () => {
-    this.props.removeExpense({ id: this.props.expense.id });    // remove exisiting item
+    this.props.startRemoveExpense({ id: this.props.expense.id });    // remove exisiting item
     this.props.history.push('/'); //then redirect back to dasahboard
   };
   render() {
@@ -31,7 +31,7 @@ const mapStateToProps = (state, props) => ({
 
 const mapDispatchToProps = (dispatch, props) => ({
   editExpense: (id, expense) => dispatch(editExpense(id, expense)),   //doing dispatch here on its own, passing in id, and expense object array, for dispatching process
-  removeExpense: (data) => dispatch(removeExpense(data))            //doing dispatch here on its own
+  startRemoveExpense: (data) => dispatch(startRemoveExpense(data))            //doing dispatch here on its own
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditExpensePage);
