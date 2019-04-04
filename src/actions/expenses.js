@@ -58,6 +58,14 @@ export const editExpense = (id, updates) => ({
   updates
 });
 
+export const startEditExpense = (id, updates) => {
+  return (dispatch) => {
+    return database.ref(`expenses/${id}`).update(updates).then(() => {  //return make sure after startEditExpense, we can then run the code dispatch(editExpense(id, updates)))
+      dispatch(editExpense(id, updates));
+    });
+  };
+};
+
 // SET_EXPENSES - we get the array back from firebase, and we set it then we're done
 export const setExpenses = (expenses) => ({
   type: 'SET_EXPENSES',
