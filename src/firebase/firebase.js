@@ -1,5 +1,8 @@
 import firebase from 'firebase/app';
 import 'firebase/database';
+import 'firebase/auth';
+//create instance of provider for authentication, provider is a way to provide authentication
+
 
 // Initialize Firebase
 const config = {
@@ -13,8 +16,11 @@ const config = {
 firebase.initializeApp(config);
 
 const database = firebase.database();
+// we use google provider for authentication here
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
-export { firebase, database as default };
+
+export { firebase, googleAuthProvider, database as default };
 
 // //child_removed - event that allow us to fetch the removed child data
 // database.ref('expenses').on('child_removed', (snapshot) => {
