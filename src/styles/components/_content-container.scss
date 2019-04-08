@@ -1,0 +1,7 @@
+// this is where we gon define that Max width container where we center everything nicely
+// constain content of page header mostly in our case
+.content-container {
+    margin: 0 auto; // auto make sure to evenly distribute the rest of the space on the left and the right
+    padding: 0 $m-size;
+    max-width: 150rem; // width and space between, for Expensify       Logout
+}

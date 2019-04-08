@@ -1,0 +1,12 @@
+.form {
+    display: flex;
+    flex-direction: column; //set input field box from top to bottm
+    > * {       //select direct descendants
+        margin-bottom: $m-size  //thats gonna target all direct children of form, setting the margin bottom correctly
+    }                           // in this case, all inputs under ExpenseForm, className="form"
+}
+.form__error {
+    margin: 0 0 $m-size 0;
+    font-style: italic;
+    font-weight: bold;
+}

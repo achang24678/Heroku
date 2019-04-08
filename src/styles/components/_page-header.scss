@@ -1,0 +1,19 @@
+// contain page specific information
+
+.page-header {
+    background: hsla(177, 45%, 90%, 0.829);
+    padding: $l-size 0; // padding give us a little space on the top and the bottom
+    margin-bottom: $l-size; // margin will give space down below the padding
+}
+
+.page-header__actions {
+    margin-top: $m-size; // space between the actions area where we have button and the actual H1 sitting above
+}
+
+.page-header__title {
+    font-weight: 300;
+    margin: 0;
+    span {
+        font-weight: 700; //700 or bold
+    }
+}

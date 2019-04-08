@@ -1,0 +1,19 @@
+.button {
+    background: $blue;
+    border: none; // making box looks better
+    color: white;
+    display: inline-block; // for add expense button/link - make sure that the vertical margin and padding actually get taken into effect, It's because inline elements don't respect top or bottom margin/padding so we need to change it to inline-block so we can apply those styles.
+    font-size: $font-size-large;
+    font-weight: 300;
+    padding: $s-size;
+    line-height: 1;
+    text-align: center;
+    text-decoration: none;
+}
+
+.button--link {
+    background: none;       // set bg color to none so the logout button looks more like a link
+}
+.button--secondary {
+    background: #888888;
+}

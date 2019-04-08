@@ -10,6 +10,7 @@ import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css';
 import { firebase } from './firebase/firebase';
+import LoadingPage from './components/LoadingPage';
 
 
 const store = configureStore();
@@ -28,7 +29,7 @@ const renderApp = () => {
   }
 };
 
-ReactDOM.render(<p>Loading...</p>, document.getElementById('app')); //shows loading before we can fecth the data from firebase
+ReactDOM.render(<LoadingPage />, document.getElementById('app')); //shows loading before we can fecth the data from firebase
 
 
 firebase.auth().onAuthStateChanged((user) => {  //onAuthStateChanged takes a callback function and runs the callback when the authenticaiton status changed ex: from unauthenticated to authenticated or vice versa

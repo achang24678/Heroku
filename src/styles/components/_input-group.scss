@@ -1,0 +1,21 @@
+.input-group {
+    // align-items: center;
+    display: flex;     
+    flex-direction: column; // for mobile, display flex in column, by default it is a row, so it goes left to right as opposed to top to bottom, we want top to bottm and use column here
+    // justify-content: center;       // set at center of the page
+    margin-bottom: $m-size;
+
+    //these are the styles we gon apply for larger screens
+    @media (min-width: $desktop-breakpoint) { 
+        flex-direction: row;    //when its on larger screen, display flex in row
+        margin-bottom: $l-size;
+        align-items: center;
+    }
+}
+
+.input-group__item {
+    margin-bottom: $s-size;
+    @media (min-width: $desktop-breakpoint) { 
+        margin: 0 $s-size 0 0;
+    }
+}

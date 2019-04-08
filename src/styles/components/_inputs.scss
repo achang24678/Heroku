@@ -1,0 +1,17 @@
+.text-input {   // we wanna avoid applying these styles to third party libraries such as DatePicker, so we use class here
+                // that way we won't mess with the built in styles for third party modules
+    border: 1px solid #cacccd;
+    height: 50px;
+    font-size: $font-size-large;
+    font-weight: 300;
+    padding: $s-size;
+}
+
+.select {
+    @extend .text-input; //inheritance
+}
+
+.textarea {
+    @extend .text-input;
+    height: 10rem;
+}

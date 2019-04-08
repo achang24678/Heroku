@@ -1,0 +1,18 @@
+.header {
+    background: $dark-blue;
+}
+
+.header__content {
+    align-items: center; //align all of the items vertically inside of the header area
+    display: flex;
+    justify-content: space-between; //distribute all of the left over space between the two things
+    padding: $s-size 0; //padding for top and buttom
+}
+
+.header__title {
+    color: white;
+    text-decoration: none; // allows us to clear the default text decoration, and underline
+    h1 {
+        margin: 0;  //clear the title margin, "Expensify" doesn't need margin
+    }
+}

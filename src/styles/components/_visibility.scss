@@ -1,0 +1,11 @@
+.show-for-mobile {
+    @media (min-width: $desktop-breakpoint) {   //when min width < desktop-breakpoing, we show "Expenses"
+        display: none;  //if its in desktop screen, dispaly none
+    }
+}
+.show-for-desktop {
+    @media (max-width: $desktop-breakpoint - 0.1rem) {  //when max width > desktop-breakpoing, we show "Expense", "Amount"
+        display: none;  //if its in mobile screen, display none
+    }
+}
+

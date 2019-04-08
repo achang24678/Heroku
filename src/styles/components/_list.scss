@@ -1,0 +1,68 @@
+.list-header {
+    background: hsla(177, 45%, 90%, 0.829);
+    border: 1px solid darken(hsla(177, 45%, 90%, 0.829), 7%);
+    color: $grey;
+    display: flex; // using flex-box to send expense to the left and amount to the right
+    justify-content: space-between;
+    padding: $s-size $m-size;   // making sure that the text isn't pusheed right up against the edge of the header box
+    font-weight: bold;
+}
+
+.list-body {    //add for space between the end of the list and the bottom of the browser
+    margin-bottom: $m-size;
+    @media (min-width: $desktop-breakpoint) {
+        margin-bottom: $l-size;
+    }
+}
+
+.list-item {
+    border: 1px solid darken(hsla(177, 45%, 90%, 0.829), 7%);
+    border-top: none;
+    color: $dark-grey;
+    display: flex;
+    flex-direction: column;
+    padding: $s-size;   // space between the box and the item inside of the box
+    text-decoration: none;
+
+    //fade in and fade out when hover over to the expense list blocks
+    transition: background .3s ease; // property we trying to transition, time for the transition, ease makesure the accelerates and decelerates 
+    &:hover {   //short hand for code down below .list-item:hover
+        background: hsla(177, 45%, 90%, 0.829);
+    }
+
+    @media (min-width: $desktop-breakpoint) { //for desktop screen
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: $m-size;
+    }
+}
+// .list-item:hover {
+// }
+
+.list-item--message {
+    align-items: center;
+    color: $grey;
+    justify-content: center;
+    padding: $m-size;
+    &:hover {
+        background: none;
+    }
+}
+
+.list-item__title {
+    margin: 0;
+    word-break: break-all;  // prevent super long input for description, so it won't break the page
+}
+
+.list-item__date {
+    color: $grey;
+    font-size: $font-size-small;
+}
+.list-item__amount {
+    margin: $s-size 0 0 0;  // for mobile, set top margin to s-size
+    @media (min-width: $desktop-breakpoint) {   //for desktop, run code below
+        margin: 0;
+        padding-left: $s-size;
+    }
+}

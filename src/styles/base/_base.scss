@@ -1,10 +1,17 @@
+* { //universal selector
+  box-sizing: border-box; // this make sure if we set the height of the input to 50 pixel, it won't count in the border and the padding 
+  // box-sizing: content-box; // this will still count in the border and padding for the height
+}
+
 html {
   font-size: 62.5%;
 }
 
 body {
+  color: $dark-grey;
   font-family: Helvetica, Arial, sans-serif;
   font-size: $m-size;
+  line-height: 1.6;
 }
 
 button {

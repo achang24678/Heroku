@@ -1,0 +1,22 @@
+.box-layout {
+    align-items: center;    //centering
+    background: url('/images/bg.jpg');  //this code runs in the browser, so the browser only has access to what's in the public directoy, so / will do the work
+    background-size: cover; //cover the entire box layout regardless the height or width change - prevent duplicate images in one page
+    display: flex;          //centering
+    height: 100vh; //viewport height
+    justify-content: center; //centering
+    width: 100vw; //viewport width
+}
+
+.box-layout__box {
+    background: fade-out(white, .15); //fade out make slightly transparent, value from 0~1
+    border-radius: 3px;
+    padding: $l-size $m-size; //bottom top, left right padding
+    text-align: center; // center the text in that box
+    width: 25rem;
+}
+
+.box-layout__title {
+    margin: 0 0 $m-size 0; //top right bottom left
+    line-height: 1; //text line height, space between lines when text across multiple lines
+}

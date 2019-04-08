@@ -1,0 +1,14 @@
+.loader {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 100vh;  //100 browser height
+    width: 100vw; //100 browser width
+
+
+}
+
+.loader__image {
+    height: 6rem;
+    width: 6rem;
+}
