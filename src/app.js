@@ -33,6 +33,7 @@ ReactDOM.render(<LoadingPage />, document.getElementById('app')); //shows loadin
 
 
 firebase.auth().onAuthStateChanged((user) => {  //onAuthStateChanged takes a callback function and runs the callback when the authenticaiton status changed ex: from unauthenticated to authenticated or vice versa
+ 
   if (user) { //login case
     store.dispatch(login(user.uid));  //user.uid provided by firebase
     console.log(store.getState());  //testing purpose
