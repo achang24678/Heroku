@@ -11,6 +11,7 @@ import PrivateRoute from './PrivateRoute'; // goal is to able to use private rou
 import PublicRoute from './PublicRoute';
 
 export const history = createBrowserHistory(); // for history.push
+
 // instead of using BrowserRouter, which already has history built in for us to use such as history.push
 // we use the regular router and we pass our history in
 const AppRouter = () => (
