@@ -4,9 +4,11 @@ import ExpenseForm from './ExpenseForm';
 import { startEditExpense, startRemoveExpense } from '../actions/expenses';
 
 export class EditExpensePage extends React.Component {
+  
   onSubmit = (expense) => {   // save the new edited information
     this.props.startEditExpense(this.props.expense.id, expense); // pass down to the mapDispatchProps's editExpense: then call out dispatch to stroe the edited information
     this.props.history.push('/'); //redirect to dashboard when submitted
+    
   };
   onRemove = () => {
     this.props.startRemoveExpense({ id: this.props.expense.id });    // remove exisiting item

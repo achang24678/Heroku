@@ -5,7 +5,7 @@ import { SingleDatePicker } from 'react-dates';
 export default class ExpenseForm extends React.Component {
   constructor(props) {
     super(props);
-
+    console.log(props);
     this.state = {
       description: props.expense ? props.expense.description : '', //for editexpensePage, if props in editexpensepage exists, we paste them right at the spot
       note: props.expense ? props.expense.note : '',                //for editexpensePage, if props in editexpensepage exists, we paste them right at the spot
